@@ -1,0 +1,20 @@
+
+// // in plain css
+// :root{
+//     --primary-color: green;
+//     --assest-color: yellow;
+//     --background-color: red;
+// }
+
+// in sass
+$primary-color: black;
+$accent-color: yellow;
+$secondary-color: red;
+$text-color:white;
+$text-hover-color:pink;
+$font-weights:(
+    "regular":400,
+    "medium":500,
+    "bold":700
+);
+$mobile: 800px;

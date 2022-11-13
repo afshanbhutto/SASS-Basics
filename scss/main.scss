@@ -1,0 +1,91 @@
+// importing partial scss file
+@import './resets';
+@import './variables';
+
+
+
+
+//functions
+@function weight($weight-name){
+    @return map-get($font-weights, $weight-name )
+};
+
+
+
+
+// mixins
+
+@mixin flexCenter($direction){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: $direction;
+}
+
+@mixin light-theme($light-theme:true) {
+    @if $light-theme{
+        background-color: lighten($primary-color, 100%);
+        color: darken($text-color, 100%);
+    }
+}
+@mixin mobile {
+    @media screen and (max-width:$mobile) {
+        @content;
+    }
+}
+
+
+
+body{
+    background-color: $primary-color;
+    font-weight:map-get($font-weights, bold );
+    margin: auto;
+};
+.topics{
+    padding: 20px;
+    margin: 20px 10px
+}
+
+
+
+
+// nesting
+.main{
+    width: 80% - 20%;
+    margin: 0 auto;
+    border: 1px solid $primary-color;
+    padding: 20px;
+    @include flexCenter(row);
+    #{&}_para1{
+        // map get
+        // font-weight: map-get($font-weights, bold );
+        font-weight: weight(regular);
+        &:hover{
+            color: $text-hover-color;
+        }
+    }
+    //extend
+    #{&}_para2{
+        @extend .main_para1;
+        &:hover{
+            color: $accent-color;
+        }
+    }
+    #{&}_para3{
+        @extend .main_para1;
+        &:hover{
+            color: $secondary-color;
+        }
+    }
+
+    @include mobile{
+        flex-direction: column
+    }
+}
+
+
+
+.light-theme{
+    @include light-theme(true);
+}
+
